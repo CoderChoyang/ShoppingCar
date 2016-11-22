@@ -12,10 +12,12 @@
 @optional
 - (void)addButtonClickWithCell:(CYRootCell *)rootCell;
 - (void)subButtonClickWithCell:(CYRootCell *)rootCell;
+- (void)selectShopButtonClickWithCell:(CYRootCell *)rootCell;
 @end
 @interface CYRootCell : UITableViewCell
 @property (strong, nonatomic) NSIndexPath *indexPath;
 @property (strong, nonatomic) NSDictionary *dict;
+@property (assign, nonatomic) BOOL isSelectShop;
 + (instancetype)rootCellWithTableView:(UITableView *)tableView
 							 delegate:(id)delegate
 							indexPath:(NSIndexPath *)indexPath;

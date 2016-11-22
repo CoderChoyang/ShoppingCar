@@ -11,7 +11,8 @@
 @property (weak, nonatomic)   IBOutlet UIButton *subShopCountBtn;
 @property (weak, nonatomic)   IBOutlet UILabel *priceLabel;
 @property (weak, nonatomic)   IBOutlet UILabel *shopCountLabel;
-@property (assign, nonatomic) BOOL isSubCount;
+@property (weak, nonatomic)   IBOutlet UIButton *selectShopBtn;
+@property (assign, nonatomic) BOOL isCountOne;
 @property (weak, nonatomic) id <CYRootCellDelate> delegate;
 @end
 @implementation CYRootCell
@@ -19,9 +20,18 @@
 	[super awakeFromNib];
 	self.selectionStyle = UITableViewCellSelectionStyleNone;
 }
-- (void)setIsSubCount:(BOOL)isSubCount {
+- (void)setIsSelectShop:(BOOL)isSelectShop {
 	
-	if (isSubCount) {
+	if (isSelectShop) {
+		[self.selectShopBtn setBackgroundImage:[UIImage imageNamed:@"select"] forState:(UIControlStateSelected)];
+	} else {
+		[self.selectShopBtn setBackgroundImage:[UIImage imageNamed:@"unSelect"] forState:(UIControlStateNormal)];
+	}
+}
+
+- (void)setIsCountOne:(BOOL)isCountOne {
+	
+	if (isCountOne) {
 		[_subShopCountBtn setBackgroundColor:[UIColor orangeColor]];
 		_subShopCountBtn.enabled = YES;
 	} else {
@@ -43,16 +53,23 @@
 	self.priceLabel.text = ((NSNumber *)[dict objectForKey:@"price"]).stringValue;
 	NSInteger shopCount = ((NSNumber *)[dict objectForKey:@"count"]).integerValue;
 	self.shopCountLabel.text = @(shopCount).stringValue;
-	if (shopCount == 0) {
-		self.isSubCount = NO;
+	if (shopCount == 1) {
+		self.isCountOne = NO;
 	}
+//	self.isSelectShop = ((NSNumber *)[dict objectForKey:@"select"]).boolValue;
+	self.isSelectShop = 1;
+	NSLog(@"%d",self.isSelectShop);
 }
 - (IBAction)select:(UIButton *)sender {
 	
-	sender.selected = !sender.selected;
+//	sender.selected = !sender.selected;
+//	self.isSelectShop = sender.selected;
+//	if ([self.delegate respondsToSelector:@selector(selectShopButtonClickWithCell:)]) {
+//		[self.delegate selectShopButtonClickWithCell:self];
+//	}
 }
 - (IBAction)addShopCount:(UIButton *)sender {
-	self.isSubCount = YES;
+	self.isCountOne = YES;
 	if ([self.delegate respondsToSelector:@selector(addButtonClickWithCell:)]) {
 		[self.delegate addButtonClickWithCell:self];
 	}

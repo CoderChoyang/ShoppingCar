@@ -88,6 +88,9 @@ typedef NS_ENUM(NSInteger, Calculation) {
 	
 	[self modifyShopCountAtIndex:rootCell.indexPath.row withModifyType:CalculationSub];
 }
+- (void)selectShopButtonClickWithCell:(CYRootCell *)rootCell {
+	NSLog(@"%d",rootCell.isSelectShop);
+}
 #pragma mark ------ reload table ------
 - (void)reloadData {
 	[self readData];
