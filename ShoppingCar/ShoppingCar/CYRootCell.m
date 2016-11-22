@@ -8,8 +8,10 @@
 
 #import "CYRootCell.h"
 @interface CYRootCell()
-@property (weak, nonatomic) IBOutlet UIButton *subShopCountBtn;
-@property (weak, nonatomic) IBOutlet UILabel *priceLabel;
+@property (weak, nonatomic)   IBOutlet UIButton *subShopCountBtn;
+@property (weak, nonatomic)   IBOutlet UILabel *priceLabel;
+@property (weak, nonatomic)   IBOutlet UILabel *shopCountLabel;
+@property (assign, nonatomic) BOOL isSubCount;
 @property (weak, nonatomic) id <CYRootCellDelate> delegate;
 @end
 @implementation CYRootCell
@@ -27,15 +29,23 @@
 		_subShopCountBtn.enabled = NO;
 	}
 }
-+ (instancetype)rootCellWithTableView:(UITableView *)tableView delegate:(id)delegate
-							indexPath:(NSIndexPath *)indexPath dict:(NSDictionary *)dict {
++ (instancetype)rootCellWithTableView:(UITableView *)tableView
+							 delegate:(id)delegate
+							indexPath:(NSIndexPath *)indexPath {
 	//	tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 	CYRootCell *cell = [[[NSBundle mainBundle] loadNibNamed:NSStringFromClass([CYRootCell class]) owner:nil options:nil] lastObject];
 	cell.delegate = delegate;
 	cell.indexPath = indexPath;
-	cell.priceLabel.text = ((NSNumber *)[dict objectForKey:@"price"]).stringValue;
-	cell.shopCountLabel.text = @(((NSNumber *)[dict objectForKey:@"count"]).integerValue).stringValue;
 	return cell;
+}
+- (void)setDict:(NSDictionary *)dict {
+	
+	self.priceLabel.text = ((NSNumber *)[dict objectForKey:@"price"]).stringValue;
+	NSInteger shopCount = ((NSNumber *)[dict objectForKey:@"count"]).integerValue;
+	self.shopCountLabel.text = @(shopCount).stringValue;
+	if (shopCount == 0) {
+		self.isSubCount = NO;
+	}
 }
 - (IBAction)select:(UIButton *)sender {
 	

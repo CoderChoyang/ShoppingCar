@@ -11,10 +11,16 @@
 #import "CYRootCell.h"
 #define WIDTH [UIScreen mainScreen].bounds.size.width
 #define HEIGHT [UIScreen mainScreen].bounds.size.height
+typedef NS_ENUM(NSInteger, Calculation) {
+	
+	CalculationAdd,
+	CalculationSub
+};
 @interface CYRootViewController ()<UITableViewDelegate,UITableViewDataSource,CYRootCellDelate>
 @property (strong, nonatomic) UITableView *tableView;
 @property (strong, nonatomic) CYBottomView *bottomView;
 @property (strong, nonatomic) NSArray *dataArray;
+@property (assign, nonatomic) Calculation calculation;
 @end
 @implementation CYRootViewController
 - (UITableView *)tableView {
@@ -60,34 +66,34 @@
 #pragma mark ------ UITableViewDataSource ------
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 	
-	CYRootCell *cell = [CYRootCell rootCellWithTableView:tableView delegate:self indexPath:indexPath dict:self.dataArray[indexPath.row]];
-	
+	CYRootCell *cell = [CYRootCell rootCellWithTableView:tableView delegate:self indexPath:indexPath];
+	// 绑定数据源
+	cell.dict = self.dataArray[indexPath.row];
 	return cell;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 	
 	return [self.dataArray count];
 }
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+	
+	return YES;
+}
 #pragma mark ------ CYRootCellDelegate ------
 - (void)addButtonClickWithCell:(CYRootCell *)rootCell {
 	
-	NSMutableArray *arrayM = self.dataArray.mutableCopy;
-	NSMutableDictionary *dictM = [NSMutableDictionary dictionaryWithDictionary:arrayM[rootCell.indexPath.row]];
-	NSInteger shopCount = ((NSNumber *)[dictM objectForKey:@"count"]).integerValue;
-	[dictM setValue:@(shopCount+=1) forKey:@"count"];
-	[arrayM replaceObjectAtIndex:rootCell.indexPath.row withObject:dictM];
-	[self writeDataWithArray:arrayM];
-	[self reloadData];
+	[self modifyShopCountAtIndex:rootCell.indexPath.row withModifyType:CalculationAdd];
 }
 - (void)subButtonClickWithCell:(CYRootCell *)rootCell {
-
+	
+	[self modifyShopCountAtIndex:rootCell.indexPath.row withModifyType:CalculationSub];
 }
-#pragma mark ------ 刷新表格 ------
+#pragma mark ------ reload table ------
 - (void)reloadData {
 	[self readData];
 	[self.tableView reloadData];
 }
-#pragma mark ------ 加载数据 ------
+#pragma mark ------ load data ------
 - (void)loadData {
 	
 	NSArray *array = [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"ShoppingList.plist" ofType:nil]];
@@ -98,7 +104,7 @@
 	self.dataArray = arrayM;
 	[self writeDataWithArray:self.dataArray];
 }
-#pragma mark ------ 读取数据 ------
+#pragma mark ------ read data ------
 - (void)readData {
 	
 	NSArray *array = [[NSUserDefaults standardUserDefaults] arrayForKey:@"ShoppingCarData"];
@@ -108,11 +114,27 @@
 		[self loadData];
 	}
 }
-#pragma mark ------ 写入数据 ------
+#pragma mark ------ write data ------
 - (void)writeDataWithArray:(NSArray *)dataArray {
 	
 	NSUserDefaults *userDafaults = [NSUserDefaults standardUserDefaults];
 	[userDafaults setObject:dataArray forKey:@"ShoppingCarData"];
+}
+#pragma mark ------ modify shop count ------
+- (void)modifyShopCountAtIndex:(NSUInteger)index withModifyType:(Calculation)type {
+	
+	NSMutableArray *arrayM = self.dataArray.mutableCopy;
+	NSMutableDictionary *dictM = [NSMutableDictionary dictionaryWithDictionary:arrayM[index]];
+	NSInteger shopCount = ((NSNumber *)[dictM objectForKey:@"count"]).integerValue;
+	if (type == CalculationAdd) {
+		[dictM setObject:@(shopCount+=1) forKey:@"count"];
+	} else {
+		[dictM setObject:@(shopCount-=1) forKey:@"count"];
+	}
+	// 替换数据
+	[arrayM replaceObjectAtIndex:index withObject:dictM];
+	[self writeDataWithArray:arrayM];
+	[self reloadData];
 }
 /**
  // view即将布局其Subviews。
