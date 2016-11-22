@@ -17,7 +17,7 @@
 @property (strong, nonatomic) NSIndexPath *indexPath;
 @property (weak, nonatomic)   IBOutlet UILabel *shopCountLabel;
 @property (assign, nonatomic) BOOL isSubCount;
-@property (assign, nonatomic) NSInteger shopCount;
+//@property (assign, nonatomic) NSInteger shopCount;
 + (instancetype)rootCellWithTableView:(UITableView *)tableView
 							 delegate:(id)delegate
 							indexPath:(NSIndexPath *)indexPath

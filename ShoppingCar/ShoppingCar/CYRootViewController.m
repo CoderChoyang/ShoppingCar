@@ -71,13 +71,21 @@
 #pragma mark ------ CYRootCellDelegate ------
 - (void)addButtonClickWithCell:(CYRootCell *)rootCell {
 	
-	NSDictionary *dict = self.dataArray[rootCell.indexPath.row];
-	rootCell.shopCount = ((NSNumber *)[dict objectForKey:@"count"]).integerValue;
-	NSLog(@"%ld",rootCell.shopCount);
-	rootCell.shopCountLabel.text = @(rootCell.shopCount+=1).stringValue;
+	NSMutableArray *arrayM = self.dataArray.mutableCopy;
+	NSMutableDictionary *dictM = [NSMutableDictionary dictionaryWithDictionary:arrayM[rootCell.indexPath.row]];
+	NSInteger shopCount = ((NSNumber *)[dictM objectForKey:@"count"]).integerValue;
+	[dictM setValue:@(shopCount+=1) forKey:@"count"];
+	[arrayM replaceObjectAtIndex:rootCell.indexPath.row withObject:dictM];
+	[self writeDataWithArray:arrayM];
+	[self reloadData];
 }
 - (void)subButtonClickWithCell:(CYRootCell *)rootCell {
 
+}
+#pragma mark ------ 刷新表格 ------
+- (void)reloadData {
+	[self readData];
+	[self.tableView reloadData];
 }
 #pragma mark ------ 加载数据 ------
 - (void)loadData {
