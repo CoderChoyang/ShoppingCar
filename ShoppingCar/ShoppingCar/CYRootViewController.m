@@ -129,7 +129,7 @@ typedef NS_ENUM(NSInteger, ModifyType) {
 	NSUserDefaults *userDafaults = [NSUserDefaults standardUserDefaults];
 	[userDafaults setObject:dataArray forKey:@"ShoppingCarData"];
 }
-#pragma mark ------ modify shop count ------
+#pragma mark ------ modify shop state ------
 - (void)modifyShopCountAtIndex:(NSUInteger)index withModifyType:(ModifyType)type {
 	
 	NSMutableArray *arrayM = self.dataArray.mutableCopy;
