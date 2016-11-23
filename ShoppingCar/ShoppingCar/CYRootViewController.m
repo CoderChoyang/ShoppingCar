@@ -18,7 +18,8 @@ typedef NS_ENUM(NSInteger, ModifyType) {
 	ModifyTypeShopSelect,
 	ModifyTypeShopUnSelect
 };
-@interface CYRootViewController ()<UITableViewDelegate,UITableViewDataSource,CYRootCellDelate>
+@interface CYRootViewController ()<UITableViewDelegate,UITableViewDataSource,
+									  CYRootCellDelate,CYBottomViewDelegate>
 @property (strong, nonatomic) UITableView *tableView;
 @property (strong, nonatomic) CYBottomView *bottomView;
 @property (strong, nonatomic) NSArray *dataArray;
@@ -40,7 +41,7 @@ typedef NS_ENUM(NSInteger, ModifyType) {
 - (CYBottomView *)bottomView {
 	
 	if (!_bottomView) {
-		_bottomView = [CYBottomView bottomView];
+		_bottomView = [CYBottomView bottomViewWithDelegate:self];
 		_bottomView.frame = CGRectMake(0, HEIGHT-45, WIDTH, 45);
 	}
 	return _bottomView;
@@ -81,6 +82,7 @@ typedef NS_ENUM(NSInteger, ModifyType) {
 	
 	return YES;
 }
+
 #pragma mark ------ CYRootCellDelegate ------
 - (void)addButtonClickWithCell:(CYRootCell *)rootCell {
 	
@@ -97,11 +99,19 @@ typedef NS_ENUM(NSInteger, ModifyType) {
 		[self modifyShopCountAtIndex:rootCell.indexPath.row withModifyType:ModifyTypeShopUnSelect];
 	}
 }
+
+#pragma mark ------ CYBottomViewDelegate ------
+- (void)selectAllClickWithBottomView:(CYBottomView *)bottomView {
+	
+	CYLog(@"dfdfdfdfdfdf");
+}
+
 #pragma mark ------ reload table ------
 - (void)reloadData {
 	[self readData];
 	[self.tableView reloadData];
 }
+
 #pragma mark ------ load data ------
 - (void)loadData {
 	
@@ -113,6 +123,7 @@ typedef NS_ENUM(NSInteger, ModifyType) {
 	self.dataArray = arrayM;
 	[self writeDataWithArray:self.dataArray];
 }
+
 #pragma mark ------ read data ------
 - (void)readData {
 	
@@ -123,12 +134,14 @@ typedef NS_ENUM(NSInteger, ModifyType) {
 		[self loadData];
 	}
 }
+
 #pragma mark ------ write data ------
 - (void)writeDataWithArray:(NSArray *)dataArray {
 	
 	NSUserDefaults *userDafaults = [NSUserDefaults standardUserDefaults];
 	[userDafaults setObject:dataArray forKey:@"ShoppingCarData"];
 }
+
 #pragma mark ------ modify shop state ------
 - (void)modifyShopCountAtIndex:(NSUInteger)index withModifyType:(ModifyType)type {
 	

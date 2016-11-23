@@ -11,7 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CYBottomView"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="iN0-l3-epB">
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="CYBottomView">
             <rect key="frame" x="0.0" y="0.0" width="375" height="45"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
@@ -19,6 +19,10 @@
                     <rect key="frame" x="18" y="10" width="25" height="25"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <state key="normal" image="unSelect"/>
+                    <state key="selected" image="select"/>
+                    <connections>
+                        <action selector="selectAll:" destination="iN0-l3-epB" eventType="touchUpInside" id="z5r-gX-8h7"/>
+                    </connections>
                 </button>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="y8o-rx-3oo">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="1"/>
@@ -42,10 +46,15 @@
                 <constraint firstItem="y8o-rx-3oo" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="ylF-lI-LI0"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="selectAllBtn" destination="cuD-8a-fmt" id="UBt-QX-l36"/>
+                <outlet property="totalPrice" destination="nnA-Cz-38T" id="aoT-bx-0ku"/>
+            </connections>
             <point key="canvasLocation" x="10.5" y="15.5"/>
         </view>
     </objects>
     <resources>
+        <image name="select" width="200" height="200"/>
         <image name="unSelect" width="200" height="200"/>
     </resources>
 </document>

@@ -8,14 +8,21 @@
 
 #import "CYBottomView.h"
 @interface CYBottomView()
+@property (weak, nonatomic) IBOutlet UIButton *selectAllBtn;
 @property (weak, nonatomic) IBOutlet UILabel *totalPrice;
 @end
 @implementation CYBottomView
-+ (instancetype)bottomView {
+
++ (instancetype)bottomViewWithDelegate:(id)delegate {
 	
-	return [[[NSBundle mainBundle] loadNibNamed:@"CYBottomView" owner:nil options:nil] lastObject];
+	CYBottomView *bottomView = [[[NSBundle mainBundle] loadNibNamed:@"CYBottomView" owner:nil options:nil] lastObject];
+	bottomView.delegate = delegate;
+	return bottomView;
 }
 - (IBAction)selectAll:(UIButton *)sender {
-	
+	sender.selected = !sender.selected;
+	if ([self.delegate respondsToSelector:@selector(selectAllClickWithBottomView:)]) {
+		[self.delegate selectAllClickWithBottomView:self];
+	}
 }
 @end
