@@ -144,7 +144,7 @@ typedef NS_ENUM(NSInteger, ModifyType) {
 	} else if (type == ModifyTypeShopUnSelect) {
 		[dictM setObject:@(NO)  forKey:@"select"];
 	}
-	// 替换数据
+	// 替换数据源相应位置的数据
 	[arrayM replaceObjectAtIndex:index withObject:dictM];
 	[self writeDataWithArray:arrayM];
 	[self reloadData];
