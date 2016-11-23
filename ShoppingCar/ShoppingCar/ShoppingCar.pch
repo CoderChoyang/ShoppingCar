@@ -1,0 +1,19 @@
+//
+//  ShoppingCar.pch
+//  ShoppingCar
+//
+//  Created by 刘崇阳 on 2016/11/23.
+//  Copyright © 2016年 WKBP. All rights reserved.
+//
+
+#ifndef ShoppingCar_pch
+#define ShoppingCar_pch
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+#if DEBUG
+#define CYLog(FORMAT, ...) fprintf(stderr,"function:%s line:%d content:%s\n", __FUNCTION__, __LINE__, [[NSString stringWithFormat:FORMAT, ##__VA_ARGS__] UTF8String]);
+#else
+#define CYNSLog(FORMAT, ...) nil
+#endif
+#endif /* ShoppingCar_pch */

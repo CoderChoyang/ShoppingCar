@@ -15,18 +15,9 @@
             <rect key="frame" x="0.0" y="0.0" width="314" height="60"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="314" height="59"/>
+                <rect key="frame" x="0.0" y="0.0" width="314" height="59.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nUz-Sy-w2H">
-                        <rect key="frame" x="18" y="16" width="25" height="25"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <state key="normal" title="Button" image="unSelect"/>
-                        <state key="selected" image="select"/>
-                        <connections>
-                            <action selector="select:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="aWi-6u-Cgc"/>
-                        </connections>
-                    </button>
                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iOa-iZ-PgG">
                         <rect key="frame" x="163" y="14" width="38" height="30"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -66,11 +57,20 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cuo-gZ-Kby">
+                        <rect key="frame" x="18" y="17" width="25" height="25"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <state key="normal" title="Button" image="unSelect"/>
+                        <state key="selected" image="select"/>
+                        <connections>
+                            <action selector="select:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="uaD-JO-sIx"/>
+                        </connections>
+                    </button>
                 </subviews>
             </tableViewCellContentView>
             <connections>
                 <outlet property="priceLabel" destination="vZh-7d-ex5" id="rHa-Bk-DhC"/>
-                <outlet property="selectShopBtn" destination="nUz-Sy-w2H" id="TzA-AW-LxO"/>
+                <outlet property="selectShopBtn" destination="cuo-gZ-Kby" id="qKk-aa-nA1"/>
                 <outlet property="shopCountLabel" destination="Kor-Hz-PDs" id="j1A-Ke-xy7"/>
                 <outlet property="subShopCountBtn" destination="ybH-sD-9Fc" id="cTL-cJ-hho"/>
             </connections>

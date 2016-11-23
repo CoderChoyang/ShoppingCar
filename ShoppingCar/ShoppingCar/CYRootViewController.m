@@ -11,16 +11,18 @@
 #import "CYRootCell.h"
 #define WIDTH [UIScreen mainScreen].bounds.size.width
 #define HEIGHT [UIScreen mainScreen].bounds.size.height
-typedef NS_ENUM(NSInteger, Calculation) {
+typedef NS_ENUM(NSInteger, ModifyType) {
 	
-	CalculationAdd,
-	CalculationSub
+	ModifyTypeShopCountAdd,
+	ModifyTypeShopCountSub,
+	ModifyTypeShopSelect,
+	ModifyTypeShopUnSelect
 };
 @interface CYRootViewController ()<UITableViewDelegate,UITableViewDataSource,CYRootCellDelate>
 @property (strong, nonatomic) UITableView *tableView;
 @property (strong, nonatomic) CYBottomView *bottomView;
 @property (strong, nonatomic) NSArray *dataArray;
-@property (assign, nonatomic) Calculation calculation;
+@property (assign, nonatomic) ModifyType modifyType;
 @end
 @implementation CYRootViewController
 - (UITableView *)tableView {
@@ -82,14 +84,18 @@ typedef NS_ENUM(NSInteger, Calculation) {
 #pragma mark ------ CYRootCellDelegate ------
 - (void)addButtonClickWithCell:(CYRootCell *)rootCell {
 	
-	[self modifyShopCountAtIndex:rootCell.indexPath.row withModifyType:CalculationAdd];
+	[self modifyShopCountAtIndex:rootCell.indexPath.row withModifyType:ModifyTypeShopCountAdd];
 }
 - (void)subButtonClickWithCell:(CYRootCell *)rootCell {
 	
-	[self modifyShopCountAtIndex:rootCell.indexPath.row withModifyType:CalculationSub];
+	[self modifyShopCountAtIndex:rootCell.indexPath.row withModifyType:ModifyTypeShopCountSub];
 }
 - (void)selectShopButtonClickWithCell:(CYRootCell *)rootCell {
-	NSLog(@"%d",rootCell.isSelectShop);
+	if (rootCell.isSelectShop) {
+		[self modifyShopCountAtIndex:rootCell.indexPath.row withModifyType:ModifyTypeShopSelect];
+	} else {
+		[self modifyShopCountAtIndex:rootCell.indexPath.row withModifyType:ModifyTypeShopUnSelect];
+	}
 }
 #pragma mark ------ reload table ------
 - (void)reloadData {
@@ -124,15 +130,19 @@ typedef NS_ENUM(NSInteger, Calculation) {
 	[userDafaults setObject:dataArray forKey:@"ShoppingCarData"];
 }
 #pragma mark ------ modify shop count ------
-- (void)modifyShopCountAtIndex:(NSUInteger)index withModifyType:(Calculation)type {
+- (void)modifyShopCountAtIndex:(NSUInteger)index withModifyType:(ModifyType)type {
 	
 	NSMutableArray *arrayM = self.dataArray.mutableCopy;
 	NSMutableDictionary *dictM = [NSMutableDictionary dictionaryWithDictionary:arrayM[index]];
 	NSInteger shopCount = ((NSNumber *)[dictM objectForKey:@"count"]).integerValue;
-	if (type == CalculationAdd) {
+	if (type == ModifyTypeShopCountAdd) {
 		[dictM setObject:@(shopCount+=1) forKey:@"count"];
-	} else {
+	} else if (type == ModifyTypeShopCountSub){
 		[dictM setObject:@(shopCount-=1) forKey:@"count"];
+	} else if (type == ModifyTypeShopSelect) {
+		[dictM setObject:@(YES) forKey:@"select"];
+	} else if (type == ModifyTypeShopUnSelect) {
+		[dictM setObject:@(NO)  forKey:@"select"];
 	}
 	// 替换数据
 	[arrayM replaceObjectAtIndex:index withObject:dictM];

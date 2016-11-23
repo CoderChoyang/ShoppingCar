@@ -11,24 +11,15 @@
 @property (weak, nonatomic)   IBOutlet UIButton *subShopCountBtn;
 @property (weak, nonatomic)   IBOutlet UILabel *priceLabel;
 @property (weak, nonatomic)   IBOutlet UILabel *shopCountLabel;
-@property (weak, nonatomic)   IBOutlet UIButton *selectShopBtn;
 @property (assign, nonatomic) BOOL isCountOne;
-@property (weak, nonatomic) id <CYRootCellDelate> delegate;
+@property (weak, nonatomic)   IBOutlet UIButton *selectShopBtn;
+@property (weak, nonatomic)   id <CYRootCellDelate> delegate;
 @end
 @implementation CYRootCell
 - (void)awakeFromNib {
 	[super awakeFromNib];
 	self.selectionStyle = UITableViewCellSelectionStyleNone;
 }
-- (void)setIsSelectShop:(BOOL)isSelectShop {
-	
-	if (isSelectShop) {
-		[self.selectShopBtn setBackgroundImage:[UIImage imageNamed:@"select"] forState:(UIControlStateSelected)];
-	} else {
-		[self.selectShopBtn setBackgroundImage:[UIImage imageNamed:@"unSelect"] forState:(UIControlStateNormal)];
-	}
-}
-
 - (void)setIsCountOne:(BOOL)isCountOne {
 	
 	if (isCountOne) {
@@ -53,20 +44,26 @@
 	self.priceLabel.text = ((NSNumber *)[dict objectForKey:@"price"]).stringValue;
 	NSInteger shopCount = ((NSNumber *)[dict objectForKey:@"count"]).integerValue;
 	self.shopCountLabel.text = @(shopCount).stringValue;
+	// 商品数量最少为1
 	if (shopCount == 1) {
 		self.isCountOne = NO;
 	}
-//	self.isSelectShop = ((NSNumber *)[dict objectForKey:@"select"]).boolValue;
-	self.isSelectShop = 1;
-	NSLog(@"%d",self.isSelectShop);
+	self.isSelectShop = ((NSNumber *)[dict objectForKey:@"select"]).boolValue;
+	// 把请求下来的状态赋给cell上的选择商品按钮
+	if (self.isSelectShop) {
+		self.selectShopBtn.selected = YES;
+	} else {
+		self.selectShopBtn.selected = NO;
+	}
 }
 - (IBAction)select:(UIButton *)sender {
-	
-//	sender.selected = !sender.selected;
-//	self.isSelectShop = sender.selected;
-//	if ([self.delegate respondsToSelector:@selector(selectShopButtonClickWithCell:)]) {
-//		[self.delegate selectShopButtonClickWithCell:self];
-//	}
+	// 在xib中做好了button的切换状态对应的不同图片
+	sender.selected = !sender.selected;
+	// 将状态传到cell上
+	self.isSelectShop = sender.selected;
+	if ([self.delegate respondsToSelector:@selector(selectShopButtonClickWithCell:)]) {
+		[self.delegate selectShopButtonClickWithCell:self];
+	}
 }
 - (IBAction)addShopCount:(UIButton *)sender {
 	self.isCountOne = YES;

@@ -60,6 +60,7 @@
 		6B4877031DE30232007B0FB4 /* CYBottomView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYBottomView.h; sourceTree = "<group>"; };
 		6B4877041DE30232007B0FB4 /* CYBottomView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYBottomView.m; sourceTree = "<group>"; };
 		6B4877061DE3023F007B0FB4 /* CYBottomView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CYBottomView.xib; sourceTree = "<group>"; };
+		6BCE92661DE548750082713E /* ShoppingCar.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShoppingCar.pch; sourceTree = "<group>"; };
 		6BEA79901DE3E5E400153C8B /* ShoppingList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ShoppingList.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -125,6 +126,7 @@
 				6B4876D41DE2FC65007B0FB4 /* Assets.xcassets */,
 				6B4876D61DE2FC65007B0FB4 /* LaunchScreen.storyboard */,
 				6B4876D91DE2FC65007B0FB4 /* Info.plist */,
+				6BCE92661DE548750082713E /* ShoppingCar.pch */,
 				6B4876C81DE2FC65007B0FB4 /* Supporting Files */,
 			);
 			path = ShoppingCar;
@@ -373,6 +375,8 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = ShoppingCar/ShoppingCar.pch;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -418,6 +422,8 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = ShoppingCar/ShoppingCar.pch;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;

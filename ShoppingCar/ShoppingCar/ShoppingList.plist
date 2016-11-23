@@ -88,7 +88,7 @@
 		<key>price</key>
 		<integer>98</integer>
 		<key>select</key>
-		<false/>
+		<true/>
 	</dict>
 	<dict>
 		<key>count</key>
