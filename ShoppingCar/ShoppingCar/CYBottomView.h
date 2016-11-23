@@ -7,17 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
-@class CYBottomView;
-@protocol CYBottomViewDelegate;
 
+@protocol CYBottomViewDelegate;
 @interface CYBottomView : UIView
-@property (weak, nonatomic) id <CYBottomViewDelegate> delegate;
+
 + (instancetype)bottomViewWithDelegate:(id)delegate;
+
 @end
 
 @protocol CYBottomViewDelegate <NSObject>
 @optional
+
 - (void)selectAllClickWithBottomView:(CYBottomView *)bottomView;
-// 测试sourceTree 本条信息由sourcetree推送
-// 测试Github     本条信息由Github推送
 @end

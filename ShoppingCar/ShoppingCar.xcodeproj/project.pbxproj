@@ -226,6 +226,7 @@
 				TargetAttributes = {
 					6B4876C41DE2FC65007B0FB4 = {
 						CreatedOnToolsVersion = 8.1;
+						DevelopmentTeam = CPWM6RL3BP;
 						ProvisioningStyle = Automatic;
 					};
 					6B4876DD1DE2FC65007B0FB4 = {
@@ -441,7 +442,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = CPWM6RL3BP;
 				INFOPLIST_FILE = ShoppingCar/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = cn.Bosstuan.ios.ShoppingCar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -452,7 +455,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = CPWM6RL3BP;
 				INFOPLIST_FILE = ShoppingCar/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = cn.Bosstuan.ios.ShoppingCar;
 				PRODUCT_NAME = "$(TARGET_NAME)";

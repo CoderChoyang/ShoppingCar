@@ -12,8 +12,8 @@
 // Include any system framework and library headers here that should be included in all compilation units.
 // You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
 #if DEBUG
-#define CYLog(FORMAT, ...) fprintf(stderr,"function:%s line:%d content:%s\n", __FUNCTION__, __LINE__, [[NSString stringWithFormat:FORMAT, ##__VA_ARGS__] UTF8String]);
+#define CYLog(FORMAT, ...) NSLog(@"line:%d content:%s func:%s", __LINE__, [[NSString stringWithFormat:FORMAT, ##__VA_ARGS__] UTF8String],__FUNCTION__)
 #else
-#define CYNSLog(FORMAT, ...) nil
+#define CYLog(FORMAT, ...) // ...
 #endif
 #endif /* ShoppingCar_pch */

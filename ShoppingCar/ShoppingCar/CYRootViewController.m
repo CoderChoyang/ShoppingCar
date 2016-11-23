@@ -5,11 +5,12 @@
 //  Created by 刘崇阳 on 2016/11/21.
 //  Copyright © 2016年 WKBP. All rights reserved.
 //
-
+// 测试sourceTree 本条信息由sourcetree推送
+// 测试Github     本条信息由GitHub客户端推送
 #import "CYRootViewController.h"
 #import "CYBottomView.h"
 #import "CYRootCell.h"
-#define WIDTH [UIScreen mainScreen].bounds.size.width
+#define WIDTH  [UIScreen mainScreen].bounds.size.width
 #define HEIGHT [UIScreen mainScreen].bounds.size.height
 typedef NS_ENUM(NSInteger, ModifyType) {
 	
@@ -55,6 +56,7 @@ typedef NS_ENUM(NSInteger, ModifyType) {
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
+	self.navigationItem.title = @"购物车";
 	[self.view addSubview:self.tableView];
 	[self.view addSubview:self.bottomView];
 	[self readData];
@@ -102,8 +104,7 @@ typedef NS_ENUM(NSInteger, ModifyType) {
 
 #pragma mark ------ CYBottomViewDelegate ------
 - (void)selectAllClickWithBottomView:(CYBottomView *)bottomView {
-	
-	CYLog(@"dfdfdfdfdfdf");
+	CYLog(@"dfdfdfdfdfdfdfd");
 }
 
 #pragma mark ------ reload table ------
@@ -145,21 +146,21 @@ typedef NS_ENUM(NSInteger, ModifyType) {
 #pragma mark ------ modify shop state ------
 - (void)modifyShopCountAtIndex:(NSUInteger)index withModifyType:(ModifyType)type {
 	
-	NSMutableArray *arrayM = self.dataArray.mutableCopy;
-	NSMutableDictionary *dictM = [NSMutableDictionary dictionaryWithDictionary:arrayM[index]];
-	NSInteger shopCount = ((NSNumber *)[dictM objectForKey:@"count"]).integerValue;
+	NSMutableArray *tempArray = self.dataArray.mutableCopy;
+	NSMutableDictionary *tempDict = [NSMutableDictionary dictionaryWithDictionary:tempArray[index]];
+	NSInteger shopCount = ((NSNumber *)[tempDict objectForKey:@"count"]).integerValue;
 	if (type == ModifyTypeShopCountAdd) {
-		[dictM setObject:@(shopCount+=1) forKey:@"count"];
+		[tempDict setObject:@(shopCount+=1) forKey:@"count"];
 	} else if (type == ModifyTypeShopCountSub){
-		[dictM setObject:@(shopCount-=1) forKey:@"count"];
+		[tempDict setObject:@(shopCount-=1) forKey:@"count"];
 	} else if (type == ModifyTypeShopSelect) {
-		[dictM setObject:@(YES) forKey:@"select"];
+		[tempDict setObject:@(YES) forKey:@"select"];
 	} else if (type == ModifyTypeShopUnSelect) {
-		[dictM setObject:@(NO)  forKey:@"select"];
+		[tempDict setObject:@(NO)  forKey:@"select"];
 	}
 	// 替换数据源相应位置的数据
-	[arrayM replaceObjectAtIndex:index withObject:dictM];
-	[self writeDataWithArray:arrayM];
+	[tempArray replaceObjectAtIndex:index withObject:tempDict];
+	[self writeDataWithArray:tempArray];
 	[self reloadData];
 }
 /**

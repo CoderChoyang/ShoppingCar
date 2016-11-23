@@ -10,12 +10,13 @@
 @interface CYBottomView()
 @property (weak, nonatomic) IBOutlet UIButton *selectAllBtn;
 @property (weak, nonatomic) IBOutlet UILabel *totalPrice;
+@property (weak, nonatomic) id <CYBottomViewDelegate> delegate;
 @end
 @implementation CYBottomView
 
 + (instancetype)bottomViewWithDelegate:(id)delegate {
 	
-	CYBottomView *bottomView = [[[NSBundle mainBundle] loadNibNamed:@"CYBottomView" owner:nil options:nil] lastObject];
+	CYBottomView *bottomView = [[[NSBundle mainBundle] loadNibNamed:NSStringFromClass([CYBottomView class]) owner:nil options:nil] lastObject];
 	bottomView.delegate = delegate;
 	return bottomView;
 }

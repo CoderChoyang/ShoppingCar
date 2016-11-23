@@ -20,7 +20,6 @@
 	self.window.frame = [UIScreen mainScreen].bounds;
 	self.window.backgroundColor = [UIColor whiteColor];
 	UINavigationController *navi = [[UINavigationController alloc] initWithRootViewController:[[CYRootViewController alloc] init]];
-	navi.title = @"模拟购物车";
 	self.window.rootViewController = navi;
 	[self.window makeKeyAndVisible];
 	return YES;
