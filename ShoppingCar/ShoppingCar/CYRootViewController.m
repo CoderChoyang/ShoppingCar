@@ -78,6 +78,7 @@ typedef NS_ENUM(NSInteger, ModifyType) {
 	// 删除NSUserDefaults中保存的本地数据保存信息
 	[[NSUserDefaults standardUserDefaults] removeObjectForKey:@"ShoppingCarData"];
 	NSLog(@"已删除本地保存数据");
+	// 测试Contribution不显示问题
 }
 
 #pragma mark ------ UITableViewDataSource ------
