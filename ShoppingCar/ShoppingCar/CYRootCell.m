@@ -11,6 +11,7 @@
 @property (weak, nonatomic)   IBOutlet UIButton *subShopCountBtn;
 @property (weak, nonatomic)   IBOutlet UILabel *priceLabel;
 @property (weak, nonatomic)   IBOutlet UILabel *shopCountLabel;
+@property (weak, nonatomic)   IBOutlet UIImageView *shopImageView;
 @property (assign, nonatomic) BOOL isCountOne;
 @property (weak, nonatomic)   IBOutlet UIButton *selectShopBtn;
 @property (weak, nonatomic)   id <CYRootCellDelate> delegate;
@@ -49,7 +50,7 @@
 		self.isCountOne = NO;
 	}
 	self.isSelectShop = [((NSNumber *)[dataDict objectForKey:@"select"]) boolValue];
-	CYLog(@"%d",self.isSelectShop);
+//	CYLog(@"%d",self.isSelectShop);
 	// 把请求下来的状态赋给cell上的选择商品按钮
 	if (self.isSelectShop) {
 		self.selectShopBtn.selected = YES;

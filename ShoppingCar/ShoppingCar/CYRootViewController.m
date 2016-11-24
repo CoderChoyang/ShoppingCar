@@ -33,7 +33,7 @@ typedef NS_ENUM(NSInteger, ModifyType) {
 												  style:(UITableViewStylePlain)];
 		_tableView.delegate = self;
 		_tableView.dataSource = self;
-		_tableView.rowHeight = 60;
+		_tableView.rowHeight = 76;
 //		[_tableView registerNib:[UINib nibWithNibName:@"CYRootCell" bundle:nil] forCellReuseIdentifier:@"cell"];
 	}
 	return _tableView;
