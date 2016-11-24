@@ -38,19 +38,33 @@
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7XG-2i-tq7">
+                    <rect key="frame" x="305" y="0.0" width="70" height="45"/>
+                    <color key="backgroundColor" red="1" green="0.33725490200000002" blue="0.2784313725" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="70" id="RC7-vx-azb"/>
+                    </constraints>
+                    <state key="normal" title="结算">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="y8o-rx-3oo" secondAttribute="trailing" id="6yP-wG-No6"/>
+                <constraint firstItem="7XG-2i-tq7" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="NU6-ee-x15"/>
                 <constraint firstItem="y8o-rx-3oo" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="YWj-H3-Sgz"/>
+                <constraint firstAttribute="trailing" secondItem="7XG-2i-tq7" secondAttribute="trailing" id="kE6-rm-DWA"/>
+                <constraint firstAttribute="bottom" secondItem="7XG-2i-tq7" secondAttribute="bottom" id="q99-9A-j7u"/>
                 <constraint firstItem="y8o-rx-3oo" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="ylF-lI-LI0"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="selectAllBtn" destination="cuD-8a-fmt" id="UBt-QX-l36"/>
+                <outlet property="settlementBtn" destination="7XG-2i-tq7" id="srO-Y5-Nno"/>
                 <outlet property="totalPrice" destination="nnA-Cz-38T" id="aoT-bx-0ku"/>
             </connections>
-            <point key="canvasLocation" x="-212" y="-143"/>
+            <point key="canvasLocation" x="-122" y="-219"/>
         </view>
     </objects>
     <resources>

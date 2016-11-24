@@ -39,16 +39,17 @@
 	cell.indexPath = indexPath;
 	return cell;
 }
-- (void)setDict:(NSDictionary *)dict {
+- (void)setDataDict:(NSDictionary *)dataDict {
 	
-	self.priceLabel.text = [((NSNumber *)[dict objectForKey:@"price"]) stringValue];
-	NSInteger shopCount = [((NSNumber *)[dict objectForKey:@"count"]) integerValue];
-	self.shopCountLabel.text = @(shopCount).stringValue;
+	self.priceLabel.text = [((NSNumber *)[dataDict objectForKey:@"price"]) stringValue];
+	NSInteger shopCount = [((NSNumber *)[dataDict objectForKey:@"count"]) integerValue];
+	self.shopCountLabel.text = [@(shopCount) stringValue];
 	// 商品数量最少为1
 	if (shopCount == 1) {
 		self.isCountOne = NO;
 	}
-	self.isSelectShop = [((NSNumber *)[dict objectForKey:@"select"]) boolValue];
+	self.isSelectShop = [((NSNumber *)[dataDict objectForKey:@"select"]) boolValue];
+	CYLog(@"%d",self.isSelectShop);
 	// 把请求下来的状态赋给cell上的选择商品按钮
 	if (self.isSelectShop) {
 		self.selectShopBtn.selected = YES;
@@ -56,6 +57,7 @@
 		self.selectShopBtn.selected = NO;
 	}
 }
+
 - (IBAction)select:(UIButton *)sender {
 	// 在xib中做好了button的切换状态对应的不同图片
 	sender.selected = !sender.selected;
@@ -65,12 +67,14 @@
 		[self.delegate selectShopButtonClickWithCell:self];
 	}
 }
+
 - (IBAction)addShopCount:(UIButton *)sender {
 	self.isCountOne = YES;
 	if ([self.delegate respondsToSelector:@selector(addButtonClickWithCell:)]) {
 		[self.delegate addButtonClickWithCell:self];
 	}
 }
+
 - (IBAction)subShopCount:(UIButton *)sender {
 
 	if ([self.delegate respondsToSelector:@selector(subButtonClickWithCell:)]) {

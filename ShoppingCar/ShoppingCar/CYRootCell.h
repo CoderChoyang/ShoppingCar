@@ -10,7 +10,7 @@
 @protocol CYRootCellDelate;
 @interface CYRootCell : UITableViewCell
 @property (strong, nonatomic) NSIndexPath *indexPath;
-@property (strong, nonatomic) NSDictionary *dict;
+@property (strong, nonatomic) NSDictionary *dataDict;
 @property (assign, nonatomic) BOOL isSelectShop;
 + (instancetype)rootCellWithTableView:(UITableView *)tableView
 							 delegate:(id)delegate
@@ -19,7 +19,10 @@
 
 @protocol CYRootCellDelate <NSObject>
 @optional
+/** 商品数+1 */
 - (void)addButtonClickWithCell:(CYRootCell *)rootCell;
+/** 商品数-1 */
 - (void)subButtonClickWithCell:(CYRootCell *)rootCell;
+/** 选择(取消)商品 */
 - (void)selectShopButtonClickWithCell:(CYRootCell *)rootCell;
 @end

@@ -11,8 +11,11 @@
 
 // Include any system framework and library headers here that should be included in all compilation units.
 // You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+#define WIDTH  [UIScreen mainScreen].bounds.size.width
+#define HEIGHT [UIScreen mainScreen].bounds.size.height
+
 #if DEBUG
-#define CYLog(FORMAT, ...) NSLog(@"line:%d content:%s func:%s", __LINE__, [[NSString stringWithFormat:FORMAT, ##__VA_ARGS__] UTF8String],__FUNCTION__)
+#define CYLog(FORMAT, ...) NSLog(@"func:%s line:%d content:%s",__FUNCTION__, __LINE__, [[NSString stringWithFormat:FORMAT, ##__VA_ARGS__] UTF8String])
 #else
 #define CYLog(FORMAT, ...) // ...
 #endif

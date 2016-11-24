@@ -10,9 +10,9 @@
 
 @protocol CYBottomViewDelegate;
 @interface CYBottomView : UIView
-
+/** 结算 */
 + (instancetype)bottomViewWithDelegate:(id)delegate;
-
+- (void)settlementClickWithDelegate:(id)delegate action:(SEL)action;
 @end
 
 @protocol CYBottomViewDelegate <NSObject>

@@ -5,13 +5,12 @@
 //  Created by 刘崇阳 on 2016/11/21.
 //  Copyright © 2016年 WKBP. All rights reserved.
 //
-// 测试sourceTree 本条信息由sourcetree推送
+// 测试sourceTree 本条信息由SourceTree推送
 // 测试Github     本条信息由GitHub客户端推送
 #import "CYRootViewController.h"
 #import "CYBottomView.h"
 #import "CYRootCell.h"
-#define WIDTH  [UIScreen mainScreen].bounds.size.width
-#define HEIGHT [UIScreen mainScreen].bounds.size.height
+#import "CYOrderViewController.h"
 typedef NS_ENUM(NSInteger, ModifyType) {
 	
 	ModifyTypeShopCountAdd,
@@ -35,7 +34,7 @@ typedef NS_ENUM(NSInteger, ModifyType) {
 		_tableView.delegate = self;
 		_tableView.dataSource = self;
 		_tableView.rowHeight = 60;
-		[_tableView registerNib:[UINib nibWithNibName:@"CYRootCell" bundle:nil] forCellReuseIdentifier:@"cell"];
+//		[_tableView registerNib:[UINib nibWithNibName:@"CYRootCell" bundle:nil] forCellReuseIdentifier:@"cell"];
 	}
 	return _tableView;
 }
@@ -44,6 +43,7 @@ typedef NS_ENUM(NSInteger, ModifyType) {
 	if (!_bottomView) {
 		_bottomView = [CYBottomView bottomViewWithDelegate:self];
 		_bottomView.frame = CGRectMake(0, HEIGHT-45, WIDTH, 45);
+		[_bottomView settlementClickWithDelegate:self action:@selector(enterToOrderView)];
 	}
 	return _bottomView;
 }
@@ -59,21 +59,32 @@ typedef NS_ENUM(NSInteger, ModifyType) {
 	self.navigationItem.title = @"购物车";
 	[self.view addSubview:self.tableView];
 	[self.view addSubview:self.bottomView];
-	[self readData];
 }
 
-/**
- // 完成任何与视图显示相关的任务，例如改变视图方向、状态栏方向、视图显示样式等
- - (void)viewWillAppear:(BOOL)animated {
+- (void)viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:animated];
- }
- */
+	[self loadData];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+	[super viewWillDisappear:animated];
+	// 将购物车中改变之后的信息发送请求到服务器上
+	NSLog(@"已发送到服务器");
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
+	[super viewDidDisappear:animated];
+	// 删除NSUserDefaults中保存的本地数据保存信息
+	[[NSUserDefaults standardUserDefaults] removeObjectForKey:@"ShoppingCarData"];
+	NSLog(@"已删除本地保存数据");
+}
+
 #pragma mark ------ UITableViewDataSource ------
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 	
 	CYRootCell *cell = [CYRootCell rootCellWithTableView:tableView delegate:self indexPath:indexPath];
 	// 绑定数据源
-	cell.dict = self.dataArray[indexPath.row];
+	cell.dataDict = self.dataArray[indexPath.row];
 	return cell;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -113,7 +124,7 @@ typedef NS_ENUM(NSInteger, ModifyType) {
 	[self.tableView reloadData];
 }
 
-#pragma mark ------ load data ------
+#pragma mark ------ load data from dataSource------
 - (void)loadData {
 	
 	NSArray *array = [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"ShoppingList.plist" ofType:nil]];
@@ -129,11 +140,8 @@ typedef NS_ENUM(NSInteger, ModifyType) {
 - (void)readData {
 	
 	NSArray *array = [[NSUserDefaults standardUserDefaults] arrayForKey:@"ShoppingCarData"];
-	if (array.count > 0) {
-		self.dataArray = array;
-	} else {
-		[self loadData];
-	}
+	CYLog(@"%@",array);
+	self.dataArray = array;
 }
 
 #pragma mark ------ write data ------
@@ -163,6 +171,12 @@ typedef NS_ENUM(NSInteger, ModifyType) {
 	[self writeDataWithArray:tempArray];
 	[self reloadData];
 }
+#pragma mark ------ push to Order view ------
+- (void)enterToOrderView {
+	
+	[self.navigationController pushViewController:[CYOrderViewController new] animated:YES];
+
+}
 /**
  // view即将布局其Subviews。
  // 要调整Subviews的位置，在调整之前要做的一些工作就可以在该方法中实现。
@@ -177,26 +191,4 @@ typedef NS_ENUM(NSInteger, ModifyType) {
 	[super viewDidLayoutSubviews];
  }
  */
-
-/**
- // 在这个方法中执行视图显示相关附件任务
- - (void)viewDidAppear:(BOOL)animated {
-	[super viewDidAppear:animated];
- }
- */
-
-/**
- //view即将从superView中移除且移除动画切换之前，此时还没有调用removeFromSuperview。
- - (void)viewWillDisappear:(BOOL)animated {
-	[super viewWillDisappear:animated];
- }
- */
-
-/**
- // view从superView中移除，移除动画切换之后调用，此时已调用removeFromSuperview。
- - (void)viewDidDisappear:(BOOL)animated {
-	[super viewDidDisappear:animated];
- }
- */
-
 @end

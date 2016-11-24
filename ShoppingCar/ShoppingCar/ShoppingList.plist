@@ -7,104 +7,78 @@
 		<integer>1</integer>
 		<key>price</key>
 		<integer>20</integer>
-		<key>select</key>
-		<false/>
 	</dict>
 	<dict>
 		<key>count</key>
 		<integer>2</integer>
 		<key>price</key>
 		<integer>39</integer>
-		<key>select</key>
-		<true/>
 	</dict>
 	<dict>
 		<key>count</key>
 		<integer>1</integer>
 		<key>price</key>
 		<integer>23</integer>
-		<key>select</key>
-		<false/>
 	</dict>
 	<dict>
 		<key>count</key>
 		<integer>4</integer>
 		<key>price</key>
 		<integer>22</integer>
-		<key>select</key>
-		<true/>
 	</dict>
 	<dict>
 		<key>count</key>
 		<integer>10</integer>
 		<key>price</key>
 		<integer>33</integer>
-		<key>select</key>
-		<false/>
 	</dict>
 	<dict>
 		<key>count</key>
 		<integer>9</integer>
 		<key>price</key>
 		<integer>11</integer>
-		<key>select</key>
-		<true/>
 	</dict>
 	<dict>
 		<key>count</key>
 		<integer>1</integer>
 		<key>price</key>
 		<integer>332</integer>
-		<key>select</key>
-		<false/>
 	</dict>
 	<dict>
 		<key>count</key>
 		<integer>3</integer>
 		<key>price</key>
 		<integer>88</integer>
-		<key>select</key>
-		<false/>
 	</dict>
 	<dict>
 		<key>count</key>
 		<integer>4</integer>
 		<key>price</key>
 		<integer>21</integer>
-		<key>select</key>
-		<false/>
 	</dict>
 	<dict>
 		<key>count</key>
 		<integer>3</integer>
 		<key>price</key>
 		<integer>223</integer>
-		<key>select</key>
-		<false/>
 	</dict>
 	<dict>
 		<key>count</key>
 		<integer>3</integer>
 		<key>price</key>
 		<integer>98</integer>
-		<key>select</key>
-		<true/>
 	</dict>
 	<dict>
 		<key>count</key>
 		<integer>1</integer>
 		<key>price</key>
 		<integer>343</integer>
-		<key>select</key>
-		<false/>
 	</dict>
 	<dict>
 		<key>count</key>
 		<integer>1</integer>
 		<key>price</key>
 		<integer>4</integer>
-		<key>select</key>
-		<true/>
 	</dict>
 </array>
 </plist>

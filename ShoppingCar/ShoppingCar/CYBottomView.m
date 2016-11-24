@@ -10,6 +10,7 @@
 @interface CYBottomView()
 @property (weak, nonatomic) IBOutlet UIButton *selectAllBtn;
 @property (weak, nonatomic) IBOutlet UILabel *totalPrice;
+@property (weak, nonatomic) IBOutlet UIButton *settlementBtn;
 @property (weak, nonatomic) id <CYBottomViewDelegate> delegate;
 @end
 @implementation CYBottomView
@@ -19,6 +20,10 @@
 	CYBottomView *bottomView = [[[NSBundle mainBundle] loadNibNamed:NSStringFromClass([CYBottomView class]) owner:nil options:nil] lastObject];
 	bottomView.delegate = delegate;
 	return bottomView;
+}
+- (void)settlementClickWithDelegate:(id)delegate action:(SEL)action {
+	
+	[self.settlementBtn addTarget:delegate action:action forControlEvents:(UIControlEventTouchUpInside)];
 }
 - (IBAction)selectAll:(UIButton *)sender {
 	sender.selected = !sender.selected;
