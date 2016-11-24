@@ -70,6 +70,7 @@ typedef NS_ENUM(NSInteger, ModifyType) {
 	[super viewWillDisappear:animated];
 	// 将购物车中改变之后的信息发送请求到服务器上
 	NSLog(@"已发送到服务器");
+	// 测试Contribution不显示问题
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
