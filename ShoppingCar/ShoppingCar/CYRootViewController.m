@@ -104,7 +104,7 @@ typedef NS_ENUM(NSInteger, ModifyType) {
 
 #pragma mark ------ CYBottomViewDelegate ------
 - (void)selectAllClickWithBottomView:(CYBottomView *)bottomView {
-	CYLog(@"dfdfdfdfdfdfdfd");
+//	CYLog(@"dfdfdfdfdfdfdfd");
 }
 
 #pragma mark ------ reload table ------

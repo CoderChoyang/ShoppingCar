@@ -41,14 +41,14 @@
 }
 - (void)setDict:(NSDictionary *)dict {
 	
-	self.priceLabel.text = ((NSNumber *)[dict objectForKey:@"price"]).stringValue;
-	NSInteger shopCount = ((NSNumber *)[dict objectForKey:@"count"]).integerValue;
+	self.priceLabel.text = [((NSNumber *)[dict objectForKey:@"price"]) stringValue];
+	NSInteger shopCount = [((NSNumber *)[dict objectForKey:@"count"]) integerValue];
 	self.shopCountLabel.text = @(shopCount).stringValue;
 	// 商品数量最少为1
 	if (shopCount == 1) {
 		self.isCountOne = NO;
 	}
-	self.isSelectShop = ((NSNumber *)[dict objectForKey:@"select"]).boolValue;
+	self.isSelectShop = [((NSNumber *)[dict objectForKey:@"select"]) boolValue];
 	// 把请求下来的状态赋给cell上的选择商品按钮
 	if (self.isSelectShop) {
 		self.selectShopBtn.selected = YES;
