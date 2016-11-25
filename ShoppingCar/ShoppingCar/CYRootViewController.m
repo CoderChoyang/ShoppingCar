@@ -142,7 +142,7 @@ typedef NS_ENUM(NSInteger, ModifyType) {
 - (void)readData {
 	
 	NSArray *array = [[NSUserDefaults standardUserDefaults] arrayForKey:@"ShoppingCarData"];
-	CYLog(@"%@",array);
+//	CYLog(@"%@",array);
 	self.dataArray = array;
 }
 
