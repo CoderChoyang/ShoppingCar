@@ -43,7 +43,7 @@
 - (void)setDataDict:(NSDictionary *)dataDict {
 	
 	_dataDict = dataDict;
-	self.priceLabel.text = [dataDict objectForKey:@"price"];
+	self.priceLabel.text = [((NSNumber *)[dataDict objectForKey:@"price"]) stringValue];
 	NSInteger shopCount = [((NSNumber *)[dataDict objectForKey:@"count"]) integerValue];
 	self.shopCountLabel.text = [@(shopCount) stringValue];
 	// 商品数量最少为1
