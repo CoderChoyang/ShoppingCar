@@ -27,8 +27,8 @@
 	Label.frame = CGRectMake(0, 0, 100, 20);
 	Label.center = self.view.center;
 	Label.font = [UIFont systemFontOfSize:15.f];
-	Label.text = @"已接受请求";
 	
+	Label.text = @"已接受请求";
 	[UIView animateWithDuration:1.5 animations:^{
 		
 		[self.view addSubview:Label];
