@@ -13,8 +13,6 @@
 @end
 
 @implementation CYOrderViewController
-
-
 /**
  // 初始化view
  - (void)loadView {
@@ -30,6 +28,7 @@
 	Label.center = self.view.center;
 	Label.font = [UIFont systemFontOfSize:15.f];
 	Label.text = @"已接受请求";
+	
 	[UIView animateWithDuration:1.5 animations:^{
 		
 		[self.view addSubview:Label];
@@ -78,6 +77,4 @@
 	[super viewDidDisappear:animated];
  }
  */
-
-
 @end
