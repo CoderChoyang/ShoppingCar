@@ -33,7 +33,6 @@
 		
 		[self.view addSubview:Label];
 	}];
-	
 }
 
 /**
