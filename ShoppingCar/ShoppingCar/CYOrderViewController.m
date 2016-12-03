@@ -13,13 +13,13 @@
 @end
 
 @implementation CYOrderViewController
+
 /**
  // 初始化view
  - (void)loadView {
 	[super loadView];
  }
  */
-
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
