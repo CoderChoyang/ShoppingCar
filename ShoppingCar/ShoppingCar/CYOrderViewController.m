@@ -36,7 +36,6 @@
 		[self.view addSubview:Label];
 	}];
 }
-
 /**
  // 完成任何与视图显示相关的任务，例如改变视图方向、状态栏方向、视图显示样式等
  - (void)viewWillAppear:(BOOL)animated {
